@@ -1,0 +1,1 @@
+word_list = ["Pineapple", "Mango", "Blueberries", "Kiwi", "Orange"]
