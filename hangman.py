@@ -32,7 +32,9 @@ class Hangman:
         if guess in self.word:
             print(f"Good guess! {guess} is in the word.")
             self.__update_word_guessed(guess)
-            print(self.word_guessed)
+            for char in self.word_guessed:
+                print(char, end=" ")
+            print()
             self.num_letters -= 1
             if self.num_letters == 0:
                 print("You have won! Congrats!")
