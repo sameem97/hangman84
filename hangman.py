@@ -49,9 +49,8 @@ class Hangman:
           If so, then proceed with check_guess and append guess to list_of_guesses."""
         while True:
             guess = input("Please guess a letter").lower()
-            if not len(guess) == 1 and not guess.isalpha():
-                print("Invalid letter. Please enter a single alphabetical character.")
-                continue
+            if not len(guess) == 1 or not guess.isalpha():
+                print("Invalid input. Please enter a single alphabetical character.")
             elif guess in self.list_of_guesses:
                 print(f"You already tried that letter!")
             else:
