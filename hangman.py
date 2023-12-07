@@ -4,8 +4,10 @@ import sys
 from typing import List
 from env_vars import word_list
 
+
 class Hangman:
     """Class to represent Hangman object."""
+
     def __init__(self, word_list: List[str]) -> None:
         self.word_list = word_list
         self.word: str = random.choice(word_list).lower()
@@ -24,13 +26,15 @@ class Hangman:
                 current_index += 1
 
     def __check_guess(self, guess: str):
-        """Check if the guess is correct. 
+        """Check if the guess is correct.
         If so, update the word and reduce num_letters.
         Otherwise reduce num_lives"""
         if guess in self.word:
             print(f"Good guess! {guess} is in the word.")
             self.__update_word_guessed(guess)
-            print(self.word_guessed)
+            for char in self.word_guessed:
+                print(char, end=" ")
+            print()
             self.num_letters -= 1
             if self.num_letters == 0:
                 print("You have won! Congrats!")
@@ -43,12 +47,12 @@ class Hangman:
                 sys.exit(-1)
             else:
                 print(f"You have {self.num_lives} lives left.")
-    
+
     def ask_for_input(self):
-        """get user input and check if it is single character alphabet. 
+        """get user input and check if it is single character alphabet.
           If so, then proceed with check_guess and append guess to list_of_guesses."""
         while True:
-            guess = input("Please guess a letter").lower()
+            guess = input("Please guess a letter: ").lower()
             if not len(guess) == 1 or not guess.isalpha():
                 print("Invalid input. Please enter a single alphabetical character.")
             elif guess in self.list_of_guesses:
@@ -57,9 +61,7 @@ class Hangman:
                 self.__check_guess(guess)
                 self.list_of_guesses.append(guess)
 
+
 if __name__ == "__main__":
     game = Hangman(word_list)
     game.ask_for_input()
-
-
-
